@@ -1,4 +1,4 @@
-package cc.flappyBird;
+package birdy;
 
 public class Timer {
 	
@@ -10,10 +10,4 @@ public class Timer {
 			ie.printStackTrace();
 		}
 	}
-	public Timer(int _number) {
-		
-	}
-	
-	
-
 }
