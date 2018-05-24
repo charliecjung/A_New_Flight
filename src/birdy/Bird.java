@@ -218,11 +218,6 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	public Bird(int _x1, int _y1) {
 
 		skins[0] = Coordinator.class.getResource(picturePath + "bird.png").toString();
-		skins[1] = Coordinator.class.getResource(picturePath + "backupbird.png").toString();
-		skins[2] = Coordinator.class.getResource(picturePath + "godmodebird.png").toString();
-		skins[3] = Coordinator.class.getResource(picturePath + "nightbird.png").toString();
-		skins[4] = Coordinator.class.getResource(picturePath + "turtle.png").toString();
-		portal = new ImageIcon(Coordinator.class.getResource(picturePath + "portal.png")).getImage();
 		x = _x1;
 		y = _y1;
 		bottomOfBird = x + birdWidth + birdHeight;

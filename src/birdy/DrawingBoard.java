@@ -100,7 +100,7 @@ public class DrawingBoard extends JPanel {
 		g.setColor(temp);
 
 		//screenX = ((screenX + dx) + (multiplier));
-		screenX = screenX + 20;
+		screenX = screenX + 90;
 		
 		if (screenX < 0) {
 			screenX = Math.abs(screenX);
@@ -112,7 +112,7 @@ public class DrawingBoard extends JPanel {
 		System.out.println("screenx: " + screenX);
 		for (Coordinator.currentPos = - (int)screenX; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += (Coordinator.SCREEN_WIDTH)) {
 			// gets run here
-			gameTimer.pause(45);
+			gameTimer.pause(100);
 			bIG.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT, board);
 		
 		}

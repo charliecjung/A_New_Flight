@@ -3,11 +3,13 @@ package birdy;
 import java.awt.BufferCapabilities;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -20,9 +22,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 public class Coordinator extends Canvas {
-
-	public static final int SCREEN_WIDTH = 900;
-	public static final int SCREEN_HEIGHT = 900;
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final int SCREEN_WIDTH = (int)screenSize.getWidth();
+	public static final int SCREEN_HEIGHT = (int)screenSize.getHeight();
 	public static final int startingCoordinate = 0;
 	public static boolean GAME_OVER = false;
 	public static boolean ifPaused = false;
@@ -58,7 +60,7 @@ public class Coordinator extends Canvas {
 	public static double realTime = System.currentTimeMillis();
 	public static double totalTime = 0;
 	private static int multiplier;
-	public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "background.wav")
+	public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "temp.wav")
 			.toString();
 	private static Graphics Drawer;
 	private static Graphics2D bIG;
@@ -113,7 +115,7 @@ public class Coordinator extends Canvas {
 	}
 
 	public static void main(String[] args) {
-
+		System.out.println("System Path: " + System.getProperty("user.dir"));
 		//backgroundImage = new ImageIcon(Coordinator.class.getResource(picturePath + "background.png")).getImage();
 		Coordinator c = new Coordinator();
 		board = new DrawingBoard(SCREEN_WIDTH, SCREEN_HEIGHT);
