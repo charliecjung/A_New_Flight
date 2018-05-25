@@ -60,8 +60,8 @@ public class Coordinator extends Canvas {
 	public static double realTime = System.currentTimeMillis();
 	public static double totalTime = 0;
 	private static int multiplier;
-	public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "temp.wav")
-			.toString();
+	//public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "background.wav").toString();
+
 	private static Graphics Drawer;
 	private static Graphics2D bIG;
 	private static BufferedImage bI;
@@ -101,18 +101,7 @@ public class Coordinator extends Canvas {
 
 	}
 
-	public static BufferedImage toBufferedImage(Image img) {
-		if (img instanceof BufferedImage) {
-			return (BufferedImage) (img);
-		}
 
-		BufferedImage tempImage = new BufferedImage(img.getWidth(null), img.getHeight(null),
-				BufferedImage.TYPE_INT_ARGB);
-		Graphics2D tempImage2D = tempImage.createGraphics();
-		tempImage2D.drawImage(img, 0, 0, null);
-		tempImage2D.dispose();
-		return tempImage;
-	}
 
 	public static void main(String[] args) {
 		System.out.println("System Path: " + System.getProperty("user.dir"));

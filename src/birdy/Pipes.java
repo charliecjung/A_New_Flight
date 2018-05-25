@@ -9,14 +9,12 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 
 public class Pipes {
-	private String picturePath = Coordinator.picturePath;
 	private DrawingBoard board;
 	private Graphics2D bIG;
 	private Vector<Pipes> pipes = new Vector<Pipes>(20);
 	private Image pipe;
 	private int tempScreenX;
 	private int x, y, w, h, thickness;
-	private static BufferedImage pipeBuffered;
 	public static boolean isPipeDeleted;
 
 	public int getX() {
@@ -56,7 +54,6 @@ public class Pipes {
 			y = 0;
 		} else if (y == 1) {
 			y = Coordinator.SCREEN_HEIGHT - (this.h);
-			
 
 		}
 	}
@@ -82,11 +79,6 @@ public class Pipes {
 	public void setPipe(Image _pipe) {
 		pipe = _pipe;
 	}
-
-	public void setPicturePath(String _picturePath) {
-		picturePath = _picturePath;
-	}
-
 	public void setPipeManager(Vector _pipes) {
 		pipes = _pipes;
 	}

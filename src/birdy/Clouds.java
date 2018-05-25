@@ -12,7 +12,6 @@ public class Clouds {
 	private String picturePath = Coordinator.picturePath;
 	private DrawingBoard board;
 	private Graphics2D bIG;
-	private int tracker = 100;;
 	private Vector<Image> clouds = new Vector<Image>(20);
 	private int x, y;
 	private int w = 90;
@@ -43,18 +42,10 @@ public class Clouds {
 	}
 
 	public void draw(int _x, int _y, Graphics g) {
-		if (Bird.BatManMode == true) {
-			cloud = new ImageIcon(Coordinator.class.getResource(picturePath + "turtle.png")).getImage();
-			g.drawImage(cloud, _x, _y, this.w, this.h, this.board);
-		} else if (Bird.BatManMode == false) {
 			cloud = new ImageIcon(Coordinator.class.getResource(picturePath + "cloud.png")).getImage();
 			g.drawImage(cloud, _x, _y, this.w, this.h, this.board);
-		}
+		
 
-	}
-
-	public void setTracker(int _tracker) {
-		tracker = _tracker;
 	}
 
 	public void setCanvas(Graphics2D _bIG) {

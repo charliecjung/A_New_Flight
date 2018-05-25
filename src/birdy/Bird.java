@@ -70,32 +70,7 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	}
 
 	public void draw(Graphics g) {
-
-		if (this.ifCheatMenuIsOpen == true) {
-			Color original = g.getColor();
-			Color tempColor = new Color(0, 0, 153);
-			g.setColor(tempColor);
-			g.drawString("Flappy Bird v0.0.4: Early DEVELOPMENTAL BUILD: Distributed to beta testers", 0, 20);
-			g.drawString("Use at your own risk... Many bugs!!!", 0, 40);
-			g.drawString("Report Bugs at: <email coming soon>", 0, 60);
-			g.drawString("Cheat Codes: In Early Beta", 0, 80);
-			g.drawString("Press M to close/open menu", 0, 100);
-			g.drawString("Press F to float", 0, 120);
-			g.drawString("(1,2,3,4) Current Bird Picture Path: " + birdPath, 0, 140);
-			g.drawString("Press 6 to stop time: " + this.isScreenToggleOn, 0, 160);
-			g.drawString("Press O for superspeed: ", 0, 180);
-			g.drawString("Press G for godmode: ", 0, 200);
-			g.drawString("Press R for reverse: ", 0, 220);
-
-			g.setColor(Color.RED);
-			g.drawLine(0, 0, x, y);
-
-			g.setColor(original);
-		}
-
 		g.drawImage(bird, x, y, birdWidth + 22, birdHeight + 13, board);
-		
-
 	}
 
 	public void setVelocity(int _f) {
@@ -132,18 +107,6 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 
 	}
 
-	public void changePictureIfNeeded(Boolean _didBirdPictureGetChanged, Graphics g) {
-
-		if (_didBirdPictureGetChanged == true) {
-
-			bird = new ImageIcon(birdPath).getImage();
-			g.drawImage(bird, x, y, birdWidth, birdHeight, board);
-			_didBirdPictureGetChanged = false;
-
-		}
-
-	}
-
 	public void setPiped(Pipes _pipe) {
 		piped = _pipe;
 	}
@@ -157,31 +120,11 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 
 	}
 
-	public void PauseResetPosition(int _y, int _y2) {
+	public void pauseResetPosition(int _y, int _y2) {
 		int tempY = _y2 - _y;
 		int finalTempY = y - tempY;
 		this.setY(finalTempY);
 	}
-
-	public void ifHit(int k) {
-		screenX = coordinator.getScreenX();
-		coordinator.setMultiplier(multiplier);
-
-		if (godMode == false) {
-
-			int temporaryY = pipes.get(k).getY();
-
-		}
-	}
-
-	public void didBirdCollide() {
-		if (ifCollidedWithObstacle == true) {
-			Coordinator.GAME_OVER = true;
-			ifCollidedWithObstacle = false;
-
-		}
-	}
-
 	public void fall(Graphics _g) {
 
 		if (ct == System.currentTimeMillis()) {
@@ -273,115 +216,9 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	}
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			v = f;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_0) {
-
-			ifCollidedWithObstacle = true;
-
-		} else if (e.getKeyCode() == KeyEvent.VK_F) {
-			v = 0.1;
-			System.out.println("Floating...");
-		} else if (e.getKeyCode() == KeyEvent.VK_1) {
-
-			birdPath = Coordinator.class.getResource(picturePath + "bird.png");
-			Coordinator.didPictureGetChanged = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_2) {
-			birdPath = Coordinator.class.getResource(picturePath + "nightbird.png");
-			Coordinator.didPictureGetChanged = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_3) {
-			birdPath = Coordinator.class.getResource(picturePath + "backupbird.png");
-			Coordinator.didPictureGetChanged = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_4) {
-			birdPath = Coordinator.class.getResource(picturePath + "backupclouds.png");
-			Coordinator.didPictureGetChanged = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_5) {
-			birdPath = Coordinator.class.getResource(picturePath + "pipe.png");
-			Coordinator.didPictureGetChanged = true;
-		} else if (e.getKeyCode() == KeyEvent.VK_6) {
-			birdPath = Coordinator.class.getResource(picturePath + "portal.png");
-			Coordinator.didPictureGetChanged = true;
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			System.exit(0);
 		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			if (this.isScreenToggleOn == false) {
-				this.isScreenToggleOn = true;
-				by = this.y;
-			} else if (this.isScreenToggleOn == true) {
-				this.PauseResetPosition(by, y);
-
-				this.isScreenToggleOn = false;
-
-				bx = 0;
-				by = 0;
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_M) {
-			if (this.ifCheatMenuIsOpen == false) {
-				this.ifCheatMenuIsOpen = true;
-			} else if (this.ifCheatMenuIsOpen == true) {
-				this.ifCheatMenuIsOpen = false;
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_O) {
-			if (multiplier == 25) {
-				multiplier = 1;
-			} else if (multiplier == 1) {
-				multiplier = 25;
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_P) {
-			if (godMode == true) {
-				birdPath = Coordinator.class.getResource(picturePath + "bird.png");
-				Coordinator.didPictureGetChanged = true;
-				godMode = false;
-			} else if (godMode == false) {
-				birdPath = Coordinator.class.getResource(picturePath + "godmodebird.png");
-				Coordinator.didPictureGetChanged = true;
-				godMode = true;
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_R) {
-
-			if (x < -1000) {
-				x = 900;
-			}
-			if (multiplier == -2) {
-				multiplier = 1;
-			} else if (multiplier == 1) {
-				multiplier = -2;
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_L) {
-			if (isPortalToggled == true) {
-
-				isPortalToggled = false;
-				bird = birdImageTemp;
-				Coordinator.didPictureGetChanged = true;
-			} else if (isPortalToggled == false) {
-
-				birdImageTemp = this.getBird();
-
-				isPortalToggled = true;
-			}
-
-		} else if (e.getKeyCode() == KeyEvent.VK_B) {
-			if (BatManMode == false) {
-				DrawingBoard.backgroundImage = new ImageIcon(
-						Coordinator.class.getResource(picturePath + "batmanBackground.jpg")).getImage();
-				birdPath = Coordinator.class.getResource(picturePath + "nightbird.png");
-				Coordinator.didPictureGetChanged = true;
-				BatManMode = true;
-				godMode = true;
-			} else if (BatManMode == true) {
-				birdPath = Coordinator.class.getResource(picturePath + "bird.png");
-				DrawingBoard.backgroundImage = new ImageIcon(
-						Coordinator.class.getResource(picturePath + "background.png")).getImage();
-				Coordinator.didPictureGetChanged = true;
-				BatManMode = false;
-				godMode = false;
-
-			}
-		} else if (e.getKeyCode() == KeyEvent.VK_8) {
-			screenX = 0;
-		}
-
 	}
 
 	public void keyReleased(KeyEvent e) {
