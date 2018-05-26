@@ -40,23 +40,25 @@ public class Pipes {
 	{
 		return thickness;
 	}
-	public void draw(Graphics g) {
+	public void draw(int _x, int _y, int _w, int _h, Graphics g) {
 		pipeImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "pipe.png")).getImage();
-		g.drawImage(pipeImage, x, y, w, h, Coordinator.board);
+		g.drawImage(pipeImage, _x, _y, _w, _h, Coordinator.board);
 
 	}
 
 	public Pipes() {
 
-		x = Coordinator.SCREEN_WIDTH + (int) ((Math.random()) * 40000);
+		x = Coordinator.SCREEN_WIDTH + (int) ((Math.random()) * 5000);
 		y = (int) (Math.random() * 2);
 
 		w = 120;
 		h = Coordinator.SCREEN_HEIGHT - 220;
 		if (y == 0) {
 			y = 0;
+			
 		} else if (y == 1) {
 			y = Coordinator.SCREEN_HEIGHT - (this.h);
+			
 
 		}
 	}
@@ -67,11 +69,5 @@ public class Pipes {
 
 		w = 120;
 		h = Coordinator.SCREEN_HEIGHT - 220;
-		if (y == 0) {
-			y = 0;
-		} else if (y == 1) {
-			y = Coordinator.SCREEN_HEIGHT - (this.h);
-
-		}
 	}
 }

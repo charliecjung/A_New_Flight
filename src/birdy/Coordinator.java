@@ -28,16 +28,11 @@ public class Coordinator extends Canvas {
 	public static boolean GAME_OVER = false;
 	public static String picturePath = "/picturesAndSounds/";
 	public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "background.wav").toString();
-	private static JFrame frame;
 	public static final DrawingBoard board = new DrawingBoard(SCREEN_WIDTH, SCREEN_HEIGHT);
 	public static int currentPos = 0;
 
 
 	public static void main(String[] args) {
-		Bird bird = new Bird(100, 100);
-		bird.draw(Coordinator.board.getGraphics());
-		CloudManager cloudManager = new CloudManager();
-		PipeManager pipeManager = new PipeManager();
 		SoundManager sm = new SoundManager();
 		sm.start();
 		

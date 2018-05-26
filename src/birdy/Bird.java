@@ -28,6 +28,8 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	private long currentTime;
 	private long lastRecordedTime;
 	
+	private long ct;
+	
 	public void draw(Graphics g) {
 		g.drawImage(birdImage, x, y, birdWidth + 22, birdHeight + 13, Coordinator.board);
 	}
@@ -63,6 +65,7 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	public Image getBirdImage() {
 		return birdImage;
 	}
+	
 	public void fall(Graphics _g) {
 
 		currentTime = System.currentTimeMillis();
@@ -81,7 +84,7 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 		y = y + dy;
 		lastRecordedTime = System.currentTimeMillis();
 	}
-
+	
 
 
 	public Bird(int _x, int _y) {

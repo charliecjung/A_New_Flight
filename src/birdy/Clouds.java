@@ -36,9 +36,9 @@ public class Clouds {
 
 	}
 
-	public void draw(Graphics g) {
+	public void draw(int _x, int _y, Graphics g) {
 			cloudImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "cloud.png")).getImage();
-			g.drawImage(cloudImage, x, y, w, h, Coordinator.board);
+			g.drawImage(cloudImage, _x, _y, w, h, Coordinator.board);
 		
 
 	}

@@ -17,19 +17,23 @@ public class DrawingBoard extends JPanel {
 	private int w, h;
 	private String GAME_TITLE = "Flappy Bird";
 	private static BufferedImage finalImage;
-	public static Image backgroundImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "background.png")).getImage();
+	public static Image backgroundImage = new ImageIcon(
+			Coordinator.class.getResource(Coordinator.picturePath + "background.png")).getImage();
 	private int screenX = 0;
 	private int multiplier = 10;
 	private int dx = 10;
-	private Image bird = new ImageIcon(getClass().getResource(Coordinator.picturePath + "bird.png")).getImage();
+	private Image birdImage = new ImageIcon(getClass().getResource(Coordinator.picturePath + "bird.png")).getImage();
 	private Timer gameTimer = new Timer();
-	private Graphics gameDrawer;
-	
+	private static Graphics gameDrawer;
+	CloudManager cloudManager;
+	PipeManager pipeManager;
+
 	public DrawingBoard(int _w, int _h) {
 		finalImage = new BufferedImage(Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT,
 				BufferedImage.TYPE_INT_ARGB);
-		Coordinator c = new Coordinator();
 		gameDrawer = finalImage.getGraphics();
+		cloudManager = new CloudManager(4);
+		pipeManager = new PipeManager(5);
 		w = _w;
 		h = _h;
 		frame = new JFrame();
@@ -43,10 +47,12 @@ public class DrawingBoard extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 	}
+
 	public void paint(Graphics g) {
 		g.drawImage(finalImage, 0, 0, Coordinator.board);
 
 	}
+
 	public void clear(Graphics g) {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, w, h);
@@ -61,75 +67,63 @@ public class DrawingBoard extends JPanel {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(Coordinator.board);
 	}
-	protected void paintComponent(Graphics g) {
-		Bird birdObj = new Bird(20, 20);
 
-	
-		screenX = screenX + 90;
+	protected void paintComponent(Graphics g) {
+		Bird bird = new Bird(0, 0);
+		updateScreenPosition();
+
+		for (Coordinator.currentPos = -(int) screenX; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += (Coordinator.SCREEN_WIDTH)) {
+
+			gameDrawer.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH,
+					Coordinator.SCREEN_HEIGHT, Coordinator.board);
+
+		}
 		
+		g.drawImage(birdImage, bird.getX(), bird.getY(), bird.getWidth() + 22, bird.getHeight() + 13,
+				Coordinator.board);
+		
+		drawClouds(g);
+		drawPipes(g);
+		gameTimer.pause(30);
+	
+
+	}
+	
+	private void updateScreenPosition() {
+		screenX = ((screenX + dx)+(multiplier));
+
 		if (screenX < 0) {
 			screenX = Math.abs(screenX);
-		} else if (screenX > (13000/2)) {
+		} else if (screenX > (13000)) {
 			screenX = 100;
 		} else if (screenX == 0) {
-			screenX = screenX + 20;
+			screenX += 10;
 		}
-	
-		for (Coordinator.currentPos = - (int)screenX; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += (Coordinator.SCREEN_WIDTH)) {
-			// gets run here
-			
-			gameDrawer.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT, Coordinator.board);
+	}
+
+	private void drawPipes(Graphics g) {
 		
+		
+	
+		for (int i = 0; i < pipeManager.getPipes().size(); i++) {
+			Color originalColor = g.getColor();
+			g.setColor(Color.BLUE);
+			g.drawLine(0, 0, pipeManager.getPipes().get(i).getX(), pipeManager.getPipes().get(i).getY());
+			g.setColor(originalColor);
+			System.out.println("Pipe X: " + (pipeManager.getPipes().get(i).getX()-((int)screenX)));
+			System.out.println("Pipe Y: " + pipeManager.getPipes().get(i).getY());
+			
+			//pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(), pipeManager.getPipes().get(i).getHeight(), gameDrawer);
 		}
-		gameTimer.pause(30);
-		g.drawImage(bird, birdObj.getX(), birdObj.getY(), birdObj.getWidth() + 22, birdObj.getHeight() + 13, Coordinator.board);
 		
 		
-	
 	}
-	
-	private Graphics getGameDrawer() {
-		return gameDrawer;
+	private void drawClouds(Graphics g) {
+		for (int i = 0; i < cloudManager.getClouds().size(); i++) {
+			
+			cloudManager.getClouds().get(i).draw(cloudManager.getClouds().get(i).getX()-((int)(screenX)), cloudManager.getClouds().get(i).getY(), gameDrawer);
+		}
 	}
-	/*
-	 * 	screenX = ((screenX + dx) + (multiplier));
 
-				if (screenX < 0) {
-					screenX = Math.abs(screenX);
-				} else if (screenX > 13000) {
-					screenX = 100;
-				}
 
-			
-			/*
-			for (Coordinator.currentPos = -(int) screenX
-					% Coordinator.SCREEN_WIDTH; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += Coordinator.SCREEN_WIDTH) {
-				// gets run here
-				
-				bIG.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT, board);
-			
-			}
-			*/
-			
-			//c.update(bIG);
-			
-			/*
-			for (int i = 0; i < pipes.size(); i++) {
-
-				pipeManager.draw(pipes.get(i).getX() - ((int) screenX), pipes.get(i).getY(), pipes.get(i).getWidth(),
-						pipes.get(i).getHeight(), bIG, i);
-				
-
-			}
-			
-
-			for (int i = 0; i < 4; i++) {
-
-				cloudManager.draw(clouds.get(i).getX() - ((int) (screenX)), clouds.get(i).getY(), bIG);
-				
-			}
-			*/
-	
-	//^^ should be handled somewhere in DrawingBoard; not Coordinator();
-	 
 }
