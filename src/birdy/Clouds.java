@@ -8,15 +8,10 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 
 public class Clouds {
-	private Image cloud;
-	private String picturePath = Coordinator.picturePath;
-	private DrawingBoard board;
-	private Graphics2D bIG;
-	private Vector<Image> clouds = new Vector<Image>(20);
+	private Image cloudImage;
 	private int x, y;
 	private int w = 90;
 	private int h = 90;
-	private Bird bird;
 
 	public int getX() {
 		return x;
@@ -37,35 +32,16 @@ public class Clouds {
 	public Clouds() {
 
 		x = Coordinator.SCREEN_WIDTH + (int) ((Math.random() + 0.1) * 800);
-		y = (Coordinator.startingCoordinate + 50) + (int) ((Math.random() + 0.1) * 350);
+		y = 50 + (int) ((Math.random() + 0.1) * 350);
 
 	}
 
-	public void draw(int _x, int _y, Graphics g) {
-			cloud = new ImageIcon(Coordinator.class.getResource(picturePath + "cloud.png")).getImage();
-			g.drawImage(cloud, _x, _y, this.w, this.h, this.board);
+	public void draw(Graphics g) {
+			cloudImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "cloud.png")).getImage();
+			g.drawImage(cloudImage, x, y, w, h, Coordinator.board);
 		
 
 	}
 
-	public void setCanvas(Graphics2D _bIG) {
-		bIG = _bIG;
-	}
-
-	public void setCloud(Image _cloud) {
-		cloud = _cloud;
-	}
-
-	public void setPicturePath(String _picturePath) {
-		picturePath = _picturePath;
-	}
-
-	public void setCloudManager(Vector _clouds) {
-		clouds = _clouds;
-	}
-
-	public void setDrawingBoard(DrawingBoard _board) {
-		board = _board;
-	}
 
 }

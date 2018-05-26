@@ -8,14 +8,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
+
 public class Pipes {
-	private DrawingBoard board;
-	private Graphics2D bIG;
-	private Vector<Pipes> pipes = new Vector<Pipes>(20);
-	private Image pipe;
-	private int tempScreenX;
+	private Image pipeImage;
 	private int x, y, w, h, thickness;
-	public static boolean isPipeDeleted;
 
 	public int getX() {
 		return x;
@@ -24,9 +21,12 @@ public class Pipes {
 	public void setX(int x) {
 		this.x = x;
 	}
-
+	
 	public int getY() {
 		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 
 	public int getWidth() {
@@ -36,10 +36,13 @@ public class Pipes {
 	public int getHeight() {
 		return h;
 	}
-
-	public void draw(int _x, int _y, int _w, int _h, Graphics g, int k) {
-
-		g.drawImage(pipe, _x, _y, _w, _h, board);
+	public int getThickness()
+	{
+		return thickness;
+	}
+	public void draw(Graphics g) {
+		pipeImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "pipe.png")).getImage();
+		g.drawImage(pipeImage, x, y, w, h, Coordinator.board);
 
 	}
 
@@ -70,20 +73,5 @@ public class Pipes {
 			y = Coordinator.SCREEN_HEIGHT - (this.h);
 
 		}
-	}
-
-	public void setCanvas(Graphics2D _canvas) {
-		bIG = _canvas;
-	}
-
-	public void setPipe(Image _pipe) {
-		pipe = _pipe;
-	}
-	public void setPipeManager(Vector _pipes) {
-		pipes = _pipes;
-	}
-
-	public void setDrawingBoard(DrawingBoard _board) {
-		board = _board;
 	}
 }
