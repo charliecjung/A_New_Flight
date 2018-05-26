@@ -71,8 +71,6 @@ public class Bird implements KeyListener{
 	
 	
 	public void fall() {
-		System.out.println("currentTime: " + currentTime);
-		System.out.println("lastRecordedTime: " + lastRecordedTime);
 		
 		if(currentTime == TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())) {
 			
@@ -85,7 +83,7 @@ public class Bird implements KeyListener{
 		
 		int dt = (int) ((currentTime - lastRecordedTime));
 		if (currentTime != lastRecordedTime) {
-			System.out.println("diff: " + dt);
+			
 		}
 		//lastRecordedTime = currentTime;
 		
@@ -133,7 +131,7 @@ public class Bird implements KeyListener{
 		a = g;
 
 		f = (deltaDistance - g * deltaTime * deltaTime / 2.0) / deltaTime;
-		System.out.println("f: " + f);
+		
 
 		
 	}
@@ -141,13 +139,11 @@ public class Bird implements KeyListener{
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-			System.out.println("birdY: " + y);
+		
 			v = f;
 
 		}
-		if (e.getKeyCode() == KeyEvent.VK_2) {
-			System.out.println("2");
-		}
+		
 	}
 
 	@Override

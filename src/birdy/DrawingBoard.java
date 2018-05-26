@@ -89,9 +89,10 @@ public class DrawingBoard extends JPanel {
 
 		g.drawLine(0, 0, bird.getX(), bird.getY());
 		drawClouds(g);
+		gameTimer.pause(20);
 		drawPipes(g);
-		gameTimer.pause(30);
-		Coordinator.board.repaint();
+		gameTimer.pause(10);
+	
 		
 	
 
