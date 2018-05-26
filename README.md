@@ -1,4 +1,4 @@
-Last Flight -- A modified Flappy Bird Clone.
+A New Flight -- A modified Flappy Bird Clone.
 
 
 <h1> How to install: </h1>
