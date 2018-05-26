@@ -50,7 +50,6 @@ public class Pipes {
 
 		x = Coordinator.SCREEN_WIDTH + (int) ((Math.random()) * 5000);
 		y = (int) (Math.random() * 2);
-
 		w = 120;
 		h = Coordinator.SCREEN_HEIGHT - 220;
 		if (y == 0) {

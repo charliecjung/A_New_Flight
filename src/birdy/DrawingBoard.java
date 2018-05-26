@@ -25,6 +25,7 @@ public class DrawingBoard extends JPanel {
 	private Image birdImage = new ImageIcon(getClass().getResource(Coordinator.picturePath + "bird.png")).getImage();
 	private Timer gameTimer = new Timer();
 	private static Graphics gameDrawer;
+	private Bird bird;
 	CloudManager cloudManager;
 	PipeManager pipeManager;
 
@@ -34,10 +35,14 @@ public class DrawingBoard extends JPanel {
 		gameDrawer = finalImage.getGraphics();
 		cloudManager = new CloudManager(4);
 		pipeManager = new PipeManager(5);
+		bird = new Bird(100, 100);
+		
+		
 		w = _w;
 		h = _h;
 		frame = new JFrame();
 		panel = new JPanel();
+		this.addListener(bird);
 		frame.add(panel);
 		frame.pack();
 		frame.setVisible(true);
@@ -45,6 +50,7 @@ public class DrawingBoard extends JPanel {
 
 		frame.getContentPane().add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 
 	}
 
@@ -61,30 +67,32 @@ public class DrawingBoard extends JPanel {
 
 	public void addListener(Bird bird) {
 		frame.addKeyListener(bird);
-		frame.addMouseListener(bird);
-		frame.addMouseMotionListener(bird);
 		frame.setTitle(this.GAME_TITLE);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(Coordinator.board);
 	}
 
 	protected void paintComponent(Graphics g) {
-		Bird bird = new Bird(0, 0);
 		updateScreenPosition();
 
 		for (Coordinator.currentPos = -(int) screenX; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += (Coordinator.SCREEN_WIDTH)) {
-
+			
 			gameDrawer.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH,
 					Coordinator.SCREEN_HEIGHT, Coordinator.board);
-
+			
 		}
 		
-		g.drawImage(birdImage, bird.getX(), bird.getY(), bird.getWidth() + 22, bird.getHeight() + 13,
-				Coordinator.board);
-		
+		//g.drawImage(birdImage, bird.getX(), bird.getY(), bird.getWidth() + 22, bird.getHeight() + 13,
+		//		Coordinator.board);
+		bird.draw(g);
+		bird.fall();
+		g.setColor(Color.RED);
+
+		g.drawLine(0, 0, bird.getX(), bird.getY());
 		drawClouds(g);
 		drawPipes(g);
 		gameTimer.pause(30);
+		Coordinator.board.repaint();
+		
 	
 
 	}
@@ -106,14 +114,20 @@ public class DrawingBoard extends JPanel {
 		
 	
 		for (int i = 0; i < pipeManager.getPipes().size(); i++) {
+			/*
 			Color originalColor = g.getColor();
 			g.setColor(Color.BLUE);
-			g.drawLine(0, 0, pipeManager.getPipes().get(i).getX(), pipeManager.getPipes().get(i).getY());
+			g.drawLine(0, 0, pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY());
+			g.setColor(Color.BLACK);
+			g.drawString("Position " + i, pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY());
 			g.setColor(originalColor);
 			System.out.println("Pipe X: " + (pipeManager.getPipes().get(i).getX()-((int)screenX)));
 			System.out.println("Pipe Y: " + pipeManager.getPipes().get(i).getY());
+			*/
 			
-			//pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(), pipeManager.getPipes().get(i).getHeight(), gameDrawer);
+			pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(), pipeManager.getPipes().get(i).getHeight(), gameDrawer);
+		
+			
 		}
 		
 		

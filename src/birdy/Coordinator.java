@@ -36,6 +36,7 @@ public class Coordinator extends Canvas {
 		SoundManager sm = new SoundManager();
 		sm.start();
 		
+		
 
 		while (true) {
 			if (GAME_OVER == true) {

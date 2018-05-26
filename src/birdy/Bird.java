@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 
-public class Bird implements KeyListener, MouseListener, MouseMotionListener, Runnable {
+public class Bird implements KeyListener{
 
 	private static int x, y;
 	private Image birdImage = new ImageIcon(getClass().getResource(Coordinator.picturePath + "bird.png")).getImage();
@@ -25,11 +25,11 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 	private static int birdHeight, birdWidth;
 	private int dy;
 	private int bx, by;
-	private long currentTime;
-	private long lastRecordedTime;
+	private long currentTime = 0;
+	private long lastRecordedTime = 0;
 	
-	private long ct;
 	
+		
 	public void draw(Graphics g) {
 		g.drawImage(birdImage, x, y, birdWidth + 22, birdHeight + 13, Coordinator.board);
 	}
@@ -66,34 +66,62 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 		return birdImage;
 	}
 	
-	public void fall(Graphics _g) {
 
-		currentTime = System.currentTimeMillis();
-
-
-		int dt = (int) (currentTime - lastRecordedTime);
-
-		if (a > g)
+	
+	
+	
+	public void fall() {
+		System.out.println("currentTime: " + currentTime);
+		System.out.println("lastRecordedTime: " + lastRecordedTime);
+		
+		if(currentTime == TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())) {
+			
+		}else if(currentTime != TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())) {
+			currentTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+		}
+		currentTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
+		
+	
+		
+		int dt = (int) ((currentTime - lastRecordedTime));
+		if (currentTime != lastRecordedTime) {
+			System.out.println("diff: " + dt);
+		}
+		//lastRecordedTime = currentTime;
+		
+		if (a >= g) {
 
 			a = g;
+		
 		// velocity calculates how far it was from original position
 
 		v = v + (a * dt);
 		dy = (int) (v * dt);
-
+		/*
+		System.out.println("a: " + a);
+		System.out.println("v: " + v);
+		System.out.println("g: " + g);
+		System.out.println("dt: " + dt);
+		System.out.println("dy: " + dy);
+		*/
+		
 		y = y + dy;
-		lastRecordedTime = System.currentTimeMillis();
+		}
+		
 	}
 	
 
 
+
 	public Bird(int _x, int _y) {
+		
 
 		this.x = _x;
 		this.y = _y;
 		
 		birdWidth = 75 - 22;
 		birdHeight = 75 - 13;
+		lastRecordedTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
 
 		// gravity
 		g = 0.001;
@@ -105,62 +133,21 @@ public class Bird implements KeyListener, MouseListener, MouseMotionListener, Ru
 		a = g;
 
 		f = (deltaDistance - g * deltaTime * deltaTime / 2.0) / deltaTime;
+		System.out.println("f: " + f);
 
 		
 	}
+
 
 	public void keyPressed(KeyEvent e) {
-		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-			System.exit(0);
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			System.out.println("birdY: " + y);
+			v = f;
+
 		}
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		if (e.getKeyCode() == KeyEvent.VK_2) {
+			System.out.println("2");
+		}
 	}
 
 	@Override
