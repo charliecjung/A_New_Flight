@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class DrawingBoard extends JPanel{
+public class DrawingBoard extends JPanel {
 	private JFrame frame;
 	private JPanel panel;
 	private int w, h;
@@ -28,15 +28,15 @@ public class DrawingBoard extends JPanel{
 	private Bird bird;
 	CloudManager cloudManager;
 	PipeManager pipeManager;
+
 	public DrawingBoard(int _w, int _h) {
 		finalImage = new BufferedImage(Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT,
 				BufferedImage.TYPE_INT_ARGB);
-		gameDrawer = (Graphics2D)finalImage.getGraphics();
+		gameDrawer = (Graphics2D) finalImage.getGraphics();
 		cloudManager = new CloudManager(4);
 		pipeManager = new PipeManager(5);
 		bird = new Bird(100, 100);
-		
-		
+
 		w = _w;
 		h = _h;
 		frame = new JFrame();
@@ -49,9 +49,7 @@ public class DrawingBoard extends JPanel{
 
 		frame.getContentPane().add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	
-		
-		
+
 	}
 
 	public void refreshCanvas() {
@@ -68,9 +66,9 @@ public class DrawingBoard extends JPanel{
 		super.paintComponent(g);
 		drawOnCanvas(g);
 	}
-	
+
 	protected void drawOnCanvas(Graphics g) {
-		//repaint();
+		// repaint();
 		screenX += multiplier;
 		if (screenX < 0) {
 			screenX = Math.abs(screenX);
@@ -79,41 +77,37 @@ public class DrawingBoard extends JPanel{
 		} else if (screenX == 0) {
 			screenX += 10;
 		}
-		
+
 		for (Coordinator.currentPos = -(int) screenX; Coordinator.currentPos < Coordinator.SCREEN_WIDTH; Coordinator.currentPos += (Coordinator.SCREEN_WIDTH)) {
-			
-			g.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH,
-					Coordinator.SCREEN_HEIGHT, Coordinator.board);
-			
-			
-			
+
+			g.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT,
+					Coordinator.board);
+
 		}
-	
+
 		drawClouds(g);
 		drawPipes(g);
 		bird.draw(g);
 		bird.fall();
 	}
-	
 
 	private void drawPipes(Graphics g) {
-		
-		
-		
+
 		for (int i = 0; i < pipeManager.getPipes().size(); i++) {
-			pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(), pipeManager.getPipes().get(i).getHeight(), g);
-			
-		
+			pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX() - ((int) screenX),
+					pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(),
+					pipeManager.getPipes().get(i).getHeight(), g);
+
 		}
-		
-		
+
 	}
+
 	private void drawClouds(Graphics g) {
-		
+
 		for (int i = 0; i < cloudManager.getClouds().size(); i++) {
-			cloudManager.getClouds().get(i).draw(cloudManager.getClouds().get(i).getX()-((int)(screenX)), cloudManager.getClouds().get(i).getY(), g);
+			cloudManager.getClouds().get(i).draw(cloudManager.getClouds().get(i).getX() - ((int) (screenX)),
+					cloudManager.getClouds().get(i).getY(), g);
 		}
 	}
 
-	
 }
