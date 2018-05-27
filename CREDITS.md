@@ -12,7 +12,7 @@ The Night/Sunset/Clean City Background:
 https://opengameart.org/content/city-background-repetitive-3
 <b> Author: Alucard </b>
 
-Pipes and Sun Sprites:
+Pipe Sprite:
 https://opengameart.org/content/2d-object-pack
 Credits to the PlatForge project and these artists:
 <b> Hannah Cohan </b>
@@ -25,14 +25,6 @@ https://opengameart.org/content/zeppelin
 Violet Sky Background:
 https://opengameart.org/content/spacy-cloudnebula-backgrounds
 <b> Author: treeform </b>
-
-Background Music (in progress):
-https://freesound.org/people/Suburbanwizard/sounds/423294/
-<b> Authors: Suburbanwizard & Jason Levin </b>
-
-Sunrise Parallax Background:
-https://kokororeflections.com/free-parallax-backgrounds-games-sky/
-<b> Author: kokororeflections </b>
 
 Cloud Images:
 https://opengameart.org/content/cloud-set
