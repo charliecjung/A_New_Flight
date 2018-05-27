@@ -7,6 +7,8 @@ https://creativecommons.org/licenses/by/3.0/us/
 Bluesy Blues (Background Music) :
 by <b> Antii Luode </b>
 
+Background Image:
+by <b> charliecjung </b>
 
 The Night/Sunset/Clean City Background:
 https://opengameart.org/content/city-background-repetitive-3
