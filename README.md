@@ -1,5 +1,7 @@
 A New Flight -- A modified Flappy Bird Clone.
 
+![Imgur Image](https://i.imgur.com/d4Opjc6.png)
+
 
 <h1> How to install: </h1>
 
