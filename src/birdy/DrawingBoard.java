@@ -53,11 +53,6 @@ public class DrawingBoard extends JPanel{
 		
 		
 	}
-	/*
-	public void paint(Graphics g) {
-		g.drawImage(finalImage, 0, 0, Coordinator.board);
-	
-	} */
 
 	public void refreshCanvas() {
 		repaint();
@@ -106,17 +101,6 @@ public class DrawingBoard extends JPanel{
 		
 		
 		for (int i = 0; i < pipeManager.getPipes().size(); i++) {
-			/*
-			Color originalColor = g.getColor();
-			g.setColor(Color.BLUE);
-			g.drawLine(0, 0, pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY());
-			g.setColor(Color.BLACK);
-			g.drawString("Position " + i, pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY());
-			g.setColor(originalColor);
-			System.out.println("Pipe X: " + (pipeManager.getPipes().get(i).getX()-((int)screenX)));
-			System.out.println("Pipe Y: " + pipeManager.getPipes().get(i).getY());
-			*/
-			
 			pipeManager.getPipes().get(i).draw(pipeManager.getPipes().get(i).getX()-((int)screenX), pipeManager.getPipes().get(i).getY(), pipeManager.getPipes().get(i).getWidth(), pipeManager.getPipes().get(i).getHeight(), g);
 			
 		
@@ -127,9 +111,7 @@ public class DrawingBoard extends JPanel{
 	private void drawClouds(Graphics g) {
 		
 		for (int i = 0; i < cloudManager.getClouds().size(); i++) {
-			
 			cloudManager.getClouds().get(i).draw(cloudManager.getClouds().get(i).getX()-((int)(screenX)), cloudManager.getClouds().get(i).getY(), g);
-			
 		}
 	}
 

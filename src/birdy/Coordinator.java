@@ -37,10 +37,6 @@ public class Coordinator extends Canvas{
 		SoundManager sm = new SoundManager();
 		sm.start();
 		
-		
-		
-		//board.paint(Coordinator.board.getGraphics());
-		
 		while (true) {
 			if (GAME_OVER == true) {
 				System.out.println("Game Over...");

@@ -7,9 +7,16 @@ A New Flight -- A modified Flappy Bird Clone.
 2. Open this repository in your favorite Java IDE.
 3. Press "Play" on Coordinator's main and enjoy the project.
 
-<h1> Todo: </h1>
+<h1> How to export a Runnable JAR file: </h1>
 
-Make javadocs to make the game more readable.
-Add in extra features.
-Multiplayer? (<i> in the far far future </i>)
+<b> Eclipse: </b>
 
+Go to File -> Export -> Runnable Jar File <br/>
+
+Set Launch options to "Coordinator" <br/>
+
+Specify your export path and name your new jar file <br/>
+
+Select the "Extract Required Libraries option" <br/>
+
+Hit "Finish" and enjoy! 

@@ -11,4 +11,4 @@ Add in deletion when clouds/pipe go left of screen and create spawn methods
 
 :large_blue_diamond: Collision logic with pipes/clouds <br/>
 :large_blue_diamond: Collision logic with bird <br/>
-:large_blue_diamond: Rename repo from "Birdy" to "A New Flight" <br/>
+
