@@ -21,7 +21,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class Coordinator extends Canvas {
+public class Coordinator extends Canvas{
 	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int SCREEN_WIDTH = (int)screenSize.getWidth();
 	public static final int SCREEN_HEIGHT = (int)screenSize.getHeight();
@@ -30,6 +30,7 @@ public class Coordinator extends Canvas {
 	public static final String backgroundMusic = Coordinator.class.getResource(picturePath + "background.wav").toString();
 	public static final DrawingBoard board = new DrawingBoard(SCREEN_WIDTH, SCREEN_HEIGHT);
 	public static int currentPos = 0;
+	private static Timer coordinatorTimer = new Timer();
 
 
 	public static void main(String[] args) {
@@ -37,15 +38,24 @@ public class Coordinator extends Canvas {
 		sm.start();
 		
 		
-
+		
+		//board.paint(Coordinator.board.getGraphics());
+		
 		while (true) {
 			if (GAME_OVER == true) {
 				System.out.println("Game Over...");
 				break;
 			}
-			board.paintComponent(Coordinator.board.getGraphics());
-			board.repaint();
+			
+			board.refreshCanvas();
+			coordinatorTimer.pause(30);
+			
+			
+	
 		}
 
 	}
+
+
+	
 }
