@@ -11,12 +11,12 @@ A New Flight -- A modified Flappy Bird Clone.
 
 <b> Eclipse: </b>
 
-Go to File -> Export -> Runnable Jar File <br/>
+Go to File -> Export -> Java -> Runnable Jar File <br/>
 
-Set Launch options to "Coordinator" <br/>
+Set Launch Configurations to "Coordinator - Birdy"
 
 Specify your export path and name your new jar file <br/>
 
-Select the "Extract Required Libraries option" <br/>
+Select the "Extract Required Libraries" option <br/>
 
 Hit "Finish" and enjoy! 
