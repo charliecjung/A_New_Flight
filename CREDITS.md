@@ -12,7 +12,7 @@ The Night/Sunset/Clean City Background:
 https://opengameart.org/content/city-background-repetitive-3
 <b> Author: Alucard </b>
 
-Pipe Sprite:
+Pipe Sprites:
 https://opengameart.org/content/2d-object-pack
 Credits to the PlatForge project and these artists:
 <b> Hannah Cohan </b>
