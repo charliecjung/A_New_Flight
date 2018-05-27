@@ -46,12 +46,8 @@ public class Coordinator extends Canvas{
 			board.refreshCanvas();
 			coordinatorTimer.pause(30);
 			
-			
-	
 		}
 
 	}
 
-
-	
 }

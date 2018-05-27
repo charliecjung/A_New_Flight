@@ -101,24 +101,27 @@ public class Bird implements KeyListener {
 		birdHeight = 75 - 13;
 		lastRecordedTime = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis());
 
-		// gravity
+		
 		gravity = 0.001;
-		// Distance of how much going in air(half of its body)
+		
+		// Distance of how much of the bird is going into the air(half of its body)
+		
 		double deltaDistance = 100;
+		
 		// How long is airtime(1 second)
+		
 		double deltaTime = 1000;
+		
 		// acceleration becomes the same as gravity
+		
 		acceleration = gravity;
-
 		force = (deltaDistance - gravity * deltaTime * deltaTime / 2.0) / deltaTime;
 
 	}
 
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-
 			velocity = force;
-
 		}
 
 	}

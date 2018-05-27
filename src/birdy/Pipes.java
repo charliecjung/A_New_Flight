@@ -57,15 +57,12 @@ public class Pipes {
 			
 		} else if (y == 1) {
 			y = Coordinator.SCREEN_HEIGHT - (this.h);
-			
-
 		}
 	}
 
 	public Pipes(int _x, int _y) {
 		x = (_x + (int) ((Math.random()) * 500)) + (int) ((Math.random()) * 400);
 		y = _y;
-
 		w = 120;
 		h = Coordinator.SCREEN_HEIGHT - 220;
 	}

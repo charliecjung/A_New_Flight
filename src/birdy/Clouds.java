@@ -40,7 +40,6 @@ public class Clouds {
 			cloudImage = new ImageIcon(Coordinator.class.getResource(Coordinator.picturePath + "cloud.png")).getImage();
 			g.drawImage(cloudImage, _x, _y, w, h, Coordinator.board);
 		
-
 	}
 
 

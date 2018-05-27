@@ -46,7 +46,6 @@ public class DrawingBoard extends JPanel {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setSize(w, h);
-
 		frame.getContentPane().add(this);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -68,7 +67,6 @@ public class DrawingBoard extends JPanel {
 	}
 
 	protected void drawOnCanvas(Graphics g) {
-		// repaint();
 		screenX += multiplier;
 		if (screenX < 0) {
 			screenX = Math.abs(screenX);
@@ -82,7 +80,7 @@ public class DrawingBoard extends JPanel {
 
 			g.drawImage(backgroundImage, Coordinator.currentPos, 0, Coordinator.SCREEN_WIDTH, Coordinator.SCREEN_HEIGHT,
 					Coordinator.board);
-
+			
 		}
 
 		drawClouds(g);
@@ -107,6 +105,7 @@ public class DrawingBoard extends JPanel {
 		for (int i = 0; i < cloudManager.getClouds().size(); i++) {
 			cloudManager.getClouds().get(i).draw(cloudManager.getClouds().get(i).getX() - ((int) (screenX)),
 					cloudManager.getClouds().get(i).getY(), g);
+			
 		}
 	}
 
